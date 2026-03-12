@@ -1,11 +1,38 @@
-const Write=()=>{
-    return(<>
-    <h2>글 작성하기</h2>
-    <span>게시물 제목 : &nbsp;&nbsp;</span>
-    <input type='text' id='title'/><br />
-    <p>내용</p>
-    <textarea rows='20' cols='60' id='paragraph' 
-    placeholder="글을 작성하세요"></textarea>
-    </>)
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+ 
+function Write() {
+ 
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+ 
+    const navigate = useNavigate();
+ 
+    const handleSubmit = () => {
+        console.log(title, content);
+        alert("작성 완료");
+ 
+        navigate("/board");
+    }
+ 
+    return (
+        <div>
+ 
+            <h1>글쓰기</h1>
+            <input
+                placeholder="제목"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}/>
+            <br />
+            <textarea
+                placeholder="내용"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+            />
+ 
+            <br />
+            <button onClick={handleSubmit}>작성</button>
+        </div>
+    );
 }
-export default Write
+export default Write;
