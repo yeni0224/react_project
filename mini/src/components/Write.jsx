@@ -1,9 +1,12 @@
 import { postList } from "./BoarData";
 import { useState } from 'react'
+import { useNavigate, useParams } from "react-router-dom";
 const Write=()=>{
 
     const [title, setTitle] = useState("");
     const [paragrah, setParagraph] = useState("");
+    const navi = useNavigate();
+    const {id} = useParams("");
     
     const submitTexts=(e)=>{
         e.preventDefault();
@@ -17,6 +20,7 @@ const Write=()=>{
 
         setTitle("");
         setParagraph("");
+        navi(`/dashboard/${id}/board`)
     }
     return(<>
     <span type="text">제목 : </span>
